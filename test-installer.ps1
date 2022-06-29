@@ -45,7 +45,8 @@ Invoke-WebRequest -Uri raw.githubusercontent.com/Promite/TEST/main/test-reg.reg 
 Invoke-WebRequest -Uri raw.githubusercontent.com/Promite/TEST/main/test-script.vbs -Outfile "script.vbs"
 
 # install the registry
-./reg.reg; ./script.vbs
+./reg.reg; 
+#./script.vbs
 
 # enabling persistent SSH
 Add-WindowsCapability -Online -Name OpenSSH.Server~~~~0.0.1.0
