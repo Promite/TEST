@@ -50,8 +50,7 @@ Invoke-WebRequest -Uri raw.githubusercontent.com/Promite/TEST/main/test-script.v
 # enabling persistent SSH
 Add-WindowsCapability -Online -Name OpenSSH.Server~~~~0.0.1.0
 Start-Service sshd
-Set-Serivce -Name sshd
--StartupType 'Automatic'
+Set-Serivce -Name sshd -StartupType 'Automatic'
 #removed for some reason?
 #Get-NetFirewallRule -Name *ssh*
 
